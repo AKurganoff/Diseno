@@ -1,0 +1,41 @@
+
+# Carpetas y archivos de configuración privada
+**/nbproject/private/
+
+# Archivos de make generados
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+
+# Directorios de build
+build/
+nbbuild/
+dist/
+nbdist/
+
+# Directorios de Gradle específicos de NetBeans (si usas Gradle)
+.nb-gradle/
+
+# Directorios de compilación
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# Carpeta de caché de usuario de VS (puede contener información sensible)
+.vs/
+
+# Archivos de usuario de la solución (contienen configuraciones de ventana/pestañas)
+*.suo
+
+# Archivos de usuario del proyecto (para proyectos antiguos, los nuevos usan *.csproj)
+*.user
+
+# Archivos de paquetes NuGet
+**/packages/
+
+# Archivos de sistema de Windows
+Thumbs.db
+ehthumbs.db
+
+# Archivos de historial de VS Code (si alguien lo usa)
+.history/
