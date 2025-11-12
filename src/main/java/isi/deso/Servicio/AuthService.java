@@ -1,8 +1,8 @@
 package isi.deso.Servicio;
 
 import isi.deso.Excepcion.AutenticacionException;
+import isi.deso.domain.Usuario;
 import isi.deso.DAO.UsuarioDAO;
-import isi.deso.Modelo.Usuario;
 
 import java.util.Objects;
 
@@ -50,7 +50,7 @@ public class AuthService {
   /**
    * Implementa la comparacion entre el nombre de usuario recibido y el registrado.
    * 
-   * @param u {@link isi.deso.Modelo.Usuario} instancia de usuario registrado en el sistema
+   * @param u {@link isi.deso.domain.Usuario} instancia de usuario registrado en el sistema
    * @param username {@code String} que representa el nombre recibido
    * @return {@code true} si la comparacion fue exitosa, {@code false} en caso contrario
    */
@@ -61,7 +61,7 @@ public class AuthService {
   /**
    * Implementa la comparacion entre la contraseña recibida y la del usuario registrado.
    * 
-   * @param u {@link isi.deso.Modelo.Usuario} instancia de usuario registrado en el sistema
+   * @param u {@link isi.deso.domain.Usuario} instancia de usuario registrado en el sistema
    * @param pass {@code String} que representa la contraseña recibida
    * @return {@code true} si la comparacion fue exitosa, {@code false} en caso contrario
    */

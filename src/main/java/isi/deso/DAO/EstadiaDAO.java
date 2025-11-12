@@ -1,8 +1,9 @@
 
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Estadia;
 import java.util.List;
+
+import isi.deso.domain.Estadia;
 
 /**
  * Interfaz del DAO para estadias.

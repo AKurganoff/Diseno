@@ -1,13 +1,20 @@
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Huesped;
-import isi.deso.Modelo.DireccionDTO;
-import isi.deso.Modelo.PosicionIVA;
-import isi.deso.Modelo.TipoDocumento;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
-import java.time.LocalDate;
+
+import isi.deso.Modelo.DireccionDTO;
+import isi.deso.domain.Huesped;
+import isi.deso.domain.PosicionIVA;
+import isi.deso.domain.TipoDocumento;
 
 /**
  * Implementacion de HuespedDAO que utiliza archivos de texto como
@@ -18,7 +25,7 @@ import java.time.LocalDate;
  * </p>
  * 
  * @see isi.deso.DAO.HuespedDAO
- * @see isi.deso.Modelo.Huesped
+ * @see isi.deso.domain.Huesped
  */
 public class HuespedDAOImp implements HuespedDAO{
     
@@ -28,7 +35,7 @@ public class HuespedDAOImp implements HuespedDAO{
     /**
      * Almacena un huesped en el archivo
      *
-     * @param h {@link isi.deso.Modelo.Huesped} datos del huesped
+     * @param h {@link isi.deso.domain.Huesped} datos del huesped
      */
     @Override
     public void crearHuesped(Huesped h) {
@@ -116,7 +123,7 @@ public class HuespedDAOImp implements HuespedDAO{
     /**
      * Busca un huesped con el mismo tipo y numero de documento que recibe por parametros.
      *
-     * @param tipo {@link isi.deso.Modelo.TipoDocumento} del huesped
+     * @param tipo {@link isi.deso.domain.TipoDocumento} del huesped
      * @param num numero del documento
      * @return huesped de existir, caso contrario devuelve {@code null}
      */
@@ -132,7 +139,7 @@ public class HuespedDAOImp implements HuespedDAO{
     /**
      * Elimina el huesped recibido por parametro del archivo
      *
-     * @param h huesped a eliminar {@link isi.deso.Modelo.Huesped}
+     * @param h huesped a eliminar {@link isi.deso.domain.Huesped}
      * @return huesped de existir, caso contrario devuelve {@code null}
      */
     @Override
@@ -169,7 +176,7 @@ public class HuespedDAOImp implements HuespedDAO{
     /**
      * Modifica el huesped almacenado en el archivo
      *
-     * @param tipoOriginal {@link isi.deso.Modelo.TipoDocumento} del huesped en el archivo
+     * @param tipoOriginal {@link isi.deso.domain.TipoDocumento} del huesped en el archivo
      * @param numOriginal numero del documento en el archivo
      * @param hActualizado nuevos datos del huesped
      */

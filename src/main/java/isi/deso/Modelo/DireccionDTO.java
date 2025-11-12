@@ -7,7 +7,7 @@ package isi.deso.Modelo;
 /**
  * Clase que define la direccion de una persona.
  * 
- * @see isi.deso.Modelo.Persona
+ * @see isi.deso.domain.Persona
  */
 public class DireccionDTO {
     private String calle,numero,departamento,piso,codigoPostal,localidad,provincia,pais;

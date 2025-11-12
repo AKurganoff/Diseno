@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package isi.deso.Strategy;
-import isi.deso.Modelo.Huesped;
 import isi.deso.Modelo.DireccionDTO;
+import isi.deso.domain.Huesped;
 /**
  * Estrategia de validacion que verifica que los campos obligatorios
  * de un huesped esten completados.
@@ -19,7 +19,7 @@ public class ValidacionCampos implements Validacion{
     /**
      * Valida todos los campos del huesped recibido.
      *
-     * @param h {@link isi.deso.Modelo.Huesped} a validar
+     * @param h {@link isi.deso.domain.Huesped} a validar
      * @return {@code true} si todos los campos requeridos son validos, {@code false} en caso contrario
      */
     @Override
@@ -43,6 +43,7 @@ public class ValidacionCampos implements Validacion{
         if (h.getNacionalidad()== null || h.getNacionalidad().isEmpty()) { System.out.println("La nacionalidad no ha sido completada.");return false; }
         return true;
     }
+    
     @Override
     public String getMensajeError() {
         return "Todos los campos deben ser completados obligatoriamente a excepción de aquellos los cuales son opcionales.";

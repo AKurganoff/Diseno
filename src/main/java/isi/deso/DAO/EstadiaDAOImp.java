@@ -1,9 +1,6 @@
 
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Estadia;
-import isi.deso.Modelo.Huesped;
-import isi.deso.Modelo.TipoDocumento;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +12,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import isi.deso.domain.Estadia;
+import isi.deso.domain.Huesped;
+import isi.deso.domain.TipoDocumento;
+
 /**
  * Implementacion de EstadiaDAO que utiliza archivos de texto como
  * medio de persistencia.
@@ -24,7 +25,7 @@ import java.util.List;
  * </p>
  * 
  * @see isi.deso.DAO.EstadiaDAO
- * @see isi.deso.Modelo.Estadia
+ * @see isi.deso.domain.Estadia
  */
 public class EstadiaDAOImp implements EstadiaDAO {
     private static final String ARCHIVO_E = "estadiasCargadas.txt";
@@ -52,7 +53,7 @@ public class EstadiaDAOImp implements EstadiaDAO {
     /**
      * Almacena una estadia en el archivo
      * 
-     * @param e {@link isi.deso.Modelo.Estadia} datos de la estadia
+     * @param e {@link isi.deso.domain.Estadia} datos de la estadia
      */
     @Override
     public void crearEstadia(Estadia e){
@@ -157,6 +158,7 @@ public class EstadiaDAOImp implements EstadiaDAO {
      *
      * @return coleccion de estadias
      */
+
     @Override
     public List<Estadia> obtenerTodas(){
         List<Estadia> listaE = new ArrayList<>();

@@ -4,13 +4,14 @@
  */
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Usuario;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import isi.deso.domain.Usuario;
 
 /**
  * Implementacion de UsuarioDAO que almacena
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
  * </p>
  * 
  * @see isi.deso.DAO.UsuarioDAO
- * @see isi.deso.Modelo.Usuario
+ * @see isi.deso.domain.Usuario
  */
 public class UsuarioDaoImp implements UsuarioDAO{
     private Map<String, Usuario> usuarios; //key: ID

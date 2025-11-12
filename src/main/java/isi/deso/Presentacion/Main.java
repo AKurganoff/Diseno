@@ -14,16 +14,16 @@ import isi.deso.DAO.HuespedDAOImp;
 import isi.deso.DAO.UsuarioDAO;
 import isi.deso.DAO.UsuarioDAOImpFile;
 import isi.deso.Gestor.GestorHuesped;
-import isi.deso.Modelo.ConexionBD;
 import isi.deso.Modelo.DireccionDTO;
-import isi.deso.Modelo.Estadia;
-import isi.deso.Modelo.Huesped;
-import isi.deso.Modelo.PosicionIVA;
-import isi.deso.Modelo.TipoDocumento;
 import isi.deso.Servicio.HuespedService;
 import isi.deso.Strategy.Validacion;
 import isi.deso.Strategy.ValidacionCampos;
 import isi.deso.Strategy.ValidacionDocumentoUnico;
+import isi.deso.domain.ConexionBD;
+import isi.deso.domain.Estadia;
+import isi.deso.domain.Huesped;
+import isi.deso.domain.PosicionIVA;
+import isi.deso.domain.TipoDocumento;
 
 /**
  * Clase principal del sistema.
@@ -497,7 +497,7 @@ public class Main {
 
     // helpers
     /**
-     * Transforma la cadena recibida en el {@link isi.deso.Modelo.TipoDocumento} correspondiente.
+     * Transforma la cadena recibida en el {@link isi.deso.domain.TipoDocumento} correspondiente.
      * 
      * @param s {@code String} que representa un tipo de documento a convertir
      * @return {@code TipoDocumento} equivalente
@@ -509,7 +509,7 @@ public class Main {
     }
 
     /**
-     * Transforma la cadena recibida en la {@link isi.deso.Modelo.PosicionIVA} correspondiente.
+     * Transforma la cadena recibida en la {@link isi.deso.domain.PosicionIVA} correspondiente.
      * 
      * @param s {@code String} que representa una posicion IVA a convertir
      * @return {@code PosicionIVA} equivalente
@@ -545,7 +545,7 @@ public class Main {
     }
 
     /**
-     * Convierte un {@link isi.deso.Modelo.TipoDocumento} a {@code String}.
+     * Convierte un {@link isi.deso.domain.TipoDocumento} a {@code String}.
      *
      * @param t tipo de documento
      * @return el nombre del enum mediante {@code name()}, o {@code ""} si {@code t} es {@code null}
@@ -569,7 +569,7 @@ public class Main {
     }
 
     /**
-     * Compara dos {@link isi.deso.Modelo.TipoDocumento}.
+     * Compara dos {@link isi.deso.domain.TipoDocumento}.
      *
      * @param a primer tipo
      * @param b segundo tipo

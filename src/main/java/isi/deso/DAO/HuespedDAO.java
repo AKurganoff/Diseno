@@ -1,8 +1,9 @@
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Huesped;
-import isi.deso.Modelo.TipoDocumento;
 import java.util.List;
+
+import isi.deso.domain.Huesped;
+import isi.deso.domain.TipoDocumento;
 
 /**
  * Interfaz del DAO para huespedes.

@@ -1,8 +1,8 @@
 package isi.deso.Servicio;
 
 import isi.deso.DAO.HuespedDAO;
-import isi.deso.Modelo.Huesped;
-import isi.deso.Modelo.TipoDocumento;
+import isi.deso.domain.Huesped;
+import isi.deso.domain.TipoDocumento;
 
 import java.util.Comparator;
 import java.util.List;
@@ -37,7 +37,7 @@ public class HuespedService {
    *
    * @param apellidoEmpiezaCon {@code String} con la o las primeras letras del apellido del huesped a buscar
    * @param nombresEmpiezaCon {@code String} con la o las primeras letras del nombre del huesped a buscar
-   * @param tipo {@link isi.deso.Modelo.TipoDocumento} tipo de documento al que corresponde el numero
+   * @param tipo {@link isi.deso.domain.TipoDocumento} tipo de documento al que corresponde el numero
    * @param nro {@code String} numero del documento
    * @return una coleccion que contiene el o los huespedes que corresponden con los datos
    */

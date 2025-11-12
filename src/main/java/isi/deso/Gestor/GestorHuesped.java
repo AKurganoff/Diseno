@@ -4,12 +4,11 @@
  */
 package isi.deso.Gestor;
 
-import isi.deso.Modelo.Huesped;
-import isi.deso.Strategy.*;
-import isi.deso.DAO.HuespedDAO;
 import isi.deso.DAO.DireccionDAO;
+import isi.deso.DAO.HuespedDAO;
 import isi.deso.Modelo.DireccionDTO;
-import java.util.List;
+import isi.deso.Strategy.Validacion;
+import isi.deso.domain.Huesped;
 
 /**
  * Se encarga principalmente de realizar validaciones

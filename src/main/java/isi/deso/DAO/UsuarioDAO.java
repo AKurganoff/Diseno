@@ -4,9 +4,9 @@
  */
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Usuario;
 import java.util.List;
-import java.util.function.Predicate;
+
+import isi.deso.domain.Usuario;
 
 /**
  * Interfaz del DAO para usuarios.

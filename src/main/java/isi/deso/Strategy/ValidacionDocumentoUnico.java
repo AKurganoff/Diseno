@@ -5,7 +5,7 @@
 package isi.deso.Strategy;
 
 import isi.deso.DAO.HuespedDAO;
-import isi.deso.Modelo.Huesped;
+import isi.deso.domain.Huesped;
 
 /**
  * Estrategia de validacion que verifica que el documento
@@ -32,7 +32,7 @@ public class ValidacionDocumentoUnico implements Validacion{
     /**
      * Verifica que el huesped no tenga un documento repetido.
      *
-     * @param h {@link isi.deso.Modelo.Huesped} a validar
+     * @param h {@link isi.deso.domain.Huesped} a validar
      * @return {@code true} si el tipo y numero de documento son unicos, {@code false} si ya existe un huesped con el mismo documento
      */
     @Override

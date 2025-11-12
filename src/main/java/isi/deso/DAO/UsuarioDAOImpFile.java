@@ -1,11 +1,18 @@
 package isi.deso.DAO;
 
-import isi.deso.Modelo.Usuario;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+
+import isi.deso.domain.Usuario;
 
 /**
  * Implementacion de UsuarioDAO que utiliza archivos de texto como
@@ -16,7 +23,7 @@ import java.util.List;
  * </p>
  * 
  * @see isi.deso.DAO.UsuarioDAO
- * @see isi.deso.Modelo.Usuario
+ * @see isi.deso.domain.Usuario
  */
 public class UsuarioDAOImpFile implements UsuarioDAO {
     private static final String ARCHIVO = "usuariosCargados.txt";
