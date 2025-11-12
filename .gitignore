@@ -39,3 +39,7 @@ ehthumbs.db
 
 # Archivos de historial de VS Code (si alguien lo usa)
 .history/
+.TPDESO1-1.0-SNAPSHOT.jar
+.vscode/*
+
+.target/*

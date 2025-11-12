@@ -5,13 +5,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=alenachosantiagu
-      - POSTGRES_DB=LocalDiseno2025
+      - POSTGRES_DB=postgres
     ports:
       - 5432:5432
     volumes:
       - ./data:/var/lib/postgresql/data
       - ./backups:/backups
-      - ./TPDiseno2025.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./backups/TPDiseno2025.sql:/docker-entrypoint-initdb.d/01-init.sql
     networks:
       - app-network
 
@@ -25,9 +25,15 @@ services:
       - 8080:80
     depends_on:
       - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  pgadmin_data:
+

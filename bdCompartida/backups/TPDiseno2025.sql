@@ -1,9 +1,6 @@
 --
 -- PostgreSQL database dump
 --
-
-\restrict jQW3SgCo5uvCr5sl2fscLNox4zNSVbOEuku2768ebybpE8XdqR9HJ0cuUmEGlW2
-
 -- Dumped from database version 18.0
 -- Dumped by pg_dump version 18.0
 
@@ -674,6 +671,4 @@ COPY public.tipohabitacion (id_tipo, costo_noche) FROM stdin;
 --
 -- PostgreSQL database dump complete
 --
-
-\unrestrict jQW3SgCo5uvCr5sl2fscLNox4zNSVbOEuku2768ebybpE8XdqR9HJ0cuUmEGlW2
 
