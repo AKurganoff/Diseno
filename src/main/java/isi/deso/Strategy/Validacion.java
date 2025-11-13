@@ -4,7 +4,7 @@
  */
 package isi.deso.Strategy;
 
-import isi.deso.domain.Huesped;
+import isi.deso.Modelo.HuespedDTO;
 
 /**
  * Interfaz del patron Strategy para validaciones.
@@ -20,7 +20,7 @@ public interface Validacion {
      * @param h {@link isi.deso.domain.Huesped} a validar
      * @return {@code true} si la validación fue exitosa, {@code false} en caso contrario
      */
-    public boolean validar(Huesped h);
+    public boolean validar(HuespedDTO h);
 
     /**
      * Devuelve el mensaje de error asociado a la validacion fallida.

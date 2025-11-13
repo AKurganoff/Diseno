@@ -7,6 +7,7 @@ package isi.deso.Gestor;
 import isi.deso.DAO.DireccionDAO;
 import isi.deso.DAO.HuespedDAO;
 import isi.deso.Modelo.DireccionDTO;
+import isi.deso.Modelo.HuespedDTO;
 import isi.deso.Strategy.Validacion;
 import isi.deso.domain.Huesped;
 
@@ -39,10 +40,10 @@ public class GestorHuesped {
         this.validaciones = validaciones;
         this.valid = valid;
     }
-    public boolean ValidarCampos(Huesped h){
+    public boolean ValidarCampos(HuespedDTO h){
         return validaciones.validar(h);
     }
-    public boolean ValidacionDocumentoUnico(Huesped h){
+    public boolean ValidacionDocumentoUnico(HuespedDTO h){
         return valid.validar(h);
     }
     /**
@@ -50,9 +51,10 @@ public class GestorHuesped {
      *
      * @param h huesped a registrar
      */
-    public void crearHuesped(Huesped h){
-        dao.crearHuesped(h);
+    public void crearHuesped(HuespedDTO h){
+        dao.crearHuespedconDTO(h);
     }
+
     /**
      * Registra una nueva direccion en el sistema.
      *
@@ -60,5 +62,23 @@ public class GestorHuesped {
      */
     public void crearDireccion(DireccionDTO d){
         ddao.crearDireccion(d);
+    }
+
+    public Huesped pasarDTOaHuesped(HuespedDTO h){
+        Huesped nuevo = new Huesped(
+            h.getNombres(),
+            h.getApellido(),
+            h.getTipoDocumento(),
+            h.getNumeroDocumento(),
+            h.getCuit(),
+            h.getPosicion(),
+            h.getFechaNacimiento(),
+            h.getDireccion(),
+            h.getTelefono(),
+            h.getEmail(),
+            h.getOcupacion(),
+            h.getNacionalidad()
+        );
+        return nuevo;
     }
 }

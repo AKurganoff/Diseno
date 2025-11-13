@@ -15,11 +15,12 @@ import isi.deso.DAO.UsuarioDAO;
 import isi.deso.DAO.UsuarioDAOImpFile;
 import isi.deso.Gestor.GestorHuesped;
 import isi.deso.Modelo.DireccionDTO;
+import isi.deso.Modelo.HuespedDTO;
+import isi.deso.Servicio.AuthService;
 import isi.deso.Servicio.HuespedService;
 import isi.deso.Strategy.Validacion;
 import isi.deso.Strategy.ValidacionCampos;
 import isi.deso.Strategy.ValidacionDocumentoUnico;
-import isi.deso.domain.ConexionBD;
 import isi.deso.domain.Estadia;
 import isi.deso.domain.Huesped;
 import isi.deso.domain.PosicionIVA;
@@ -50,15 +51,15 @@ public class Main {
      * Punto de entrada principal del sistema.
      */
     public static void main(String[] args) {
-        /* 
+        
         try {
             // cu01 - login
             System.out.println("BIENVENIDO");
             System.out.println("ingrese sus datos para continuar\n");
 
             AuthService auth = new AuthService(usuarioDAO);
-
             // bucle hasta que loguea
+            /** 
             while (true) {
                 System.out.print("ingresar nombre de usuario: ");
                 String nombreUs = scanner.nextLine();
@@ -75,7 +76,7 @@ public class Main {
                     System.out.println("error: " + e.getMessage());
                 }
             }
-            
+            */
             // menú principal
             while (true) {
                 System.out.println();
@@ -89,7 +90,7 @@ public class Main {
                 switch (op) {
                     case "1" -> cu02();
                     case "2" -> cu09();
-                    case "3" -> cu10();
+                    //case "3" -> cu10();
                     case "0" -> { System.out.println("fin."); return; }
                     default -> System.out.println("opcion invalida");
                 }
@@ -99,9 +100,9 @@ public class Main {
             System.err.println("error: " + e.getMessage());
             System.out.println("fin.");
         }
-            */
-        ConexionBD testBd = new ConexionBD();
-        testBd.connect();
+        
+        /**ConexionBD testBd = new ConexionBD();
+        testBd.connect();*/
     }
 
     // cu02 - buscar huesped
@@ -152,7 +153,7 @@ public class Main {
             Huesped seleccionado = lista.get(idx);
             System.out.println("seleccionado: " + seleccionado);
             // desde la busqueda lo mando a modificar
-            cu10(); 
+            //cu10(); 
 
         } catch (Exception e) {
             System.out.println("seleccion invalida: alta.");
@@ -179,7 +180,7 @@ public class Main {
             HuespedDAO dao = huespedDAO;
             Validacion v1 = new ValidacionCampos();
             Validacion v2 = new ValidacionDocumentoUnico(dao);
-            Huesped h = null; 
+            HuespedDTO h = null; 
             DireccionDTO dir = null;
             // gestor que coordina dao + validaciones
             GestorHuesped g = new GestorHuesped(ddao, dao, v1, v2);
@@ -233,7 +234,7 @@ public class Main {
                 }
                 if (decision.equals("1")) {
                     // construir entidad 
-                    Huesped haux = new Huesped(
+                    HuespedDTO haux = new HuespedDTO(
                         nombres, apellido, tipo, nroDoc, cuit,
                         pos, fNac, diraux, tel, email, ocu, nac
                     );
@@ -290,7 +291,8 @@ public class Main {
      * Implementa el decimo caso de uso, modificar un huesped.
      * Recibe datos por consola y modifica el huesped registrado.
      */
-    static void cu10() {
+    /** 
+     static void cu10() {
         System.out.println("\ncu10 - modificar huesped");
 
         // busca primero (mismo estilo q cu02)
@@ -438,7 +440,7 @@ public class Main {
             default -> System.out.println("opcion invalida");
         }
     }
-
+    */
     // cu11 - borrar huesped
     /**
      * Implementa el onceavo caso de uso, registrar una estadia.

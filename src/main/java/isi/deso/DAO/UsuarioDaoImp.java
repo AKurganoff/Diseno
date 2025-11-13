@@ -56,7 +56,7 @@ public class UsuarioDaoImp implements UsuarioDAO{
      */
     @Override
     public List<Usuario> listaCompUser() {
-	return new ArrayList<>(this.usuarios.values());
+	    return new ArrayList<>(this.usuarios.values());
     }
 
     /**
@@ -66,7 +66,7 @@ public class UsuarioDaoImp implements UsuarioDAO{
      */
     @Override
     public void guardarUsuario(Usuario usuario) {
-	this.usuarios.put(usuario.getNUsuario(), usuario);
+	    this.usuarios.put(usuario.getNUsuario(), usuario);
     }
 
 }

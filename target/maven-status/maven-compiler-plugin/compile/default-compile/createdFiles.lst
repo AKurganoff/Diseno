@@ -13,6 +13,7 @@ isi\deso\Servicio\HuespedService.class
 isi\deso\Strategy\ValidacionDocumentoUnico.class
 isi\deso\domain\PosicionIVA.class
 isi\deso\Servicio\UsuarioServicio.class
+isi\deso\Modelo\HuespedDTO.class
 isi\deso\DAO\DireccionDAOImp.class
 isi\deso\domain\TipoDocumento.class
 isi\deso\Excepcion\MainException.class

@@ -1,0 +1,17 @@
+CODIGO PARA LA ENTREGA 6BIS CASO DE USO 9
+En el archivo Main del package isi.deso.Presentacion se encuentra el codigo de la funcion donde implementamos el caso de USO
+de la linea 169 a la linea 287.
+En esta entrega todavia no implementamos consultas de recuperacion o insercion de datos en la base de datos, pero si la tenemos implementada
+
+PARA EJECUTAR EL CODIGO DEL CASO DE USO 9
+1. abrir una terminal nueva dentro de visual studio code o el IDE que utilices
+2. ejecutar el comando $mvn clean compile
+3. si no da errores de compilacion ejecutar el comando $mvn exec:java
+
+PARA ACCEDER A LA BASE DE DATOS
+1. Abrir la terminal de la computadora, sea powershel, cmd o otra.
+2. Ubicarse en la carpeta bdCompartida ubicada dentro del proyecto.
+3. Teniendo docker abierto ejecutar el comando: $docker compose up -d
+4. ingresar en el contenedor de docker abierto, (en mi caso funciona unicamente en el puerto 8080).
+5. registrarse con las credenciales que estan en el archivo docker-compose.yml para entrar a pgAdmin
+6. Registrar la base de datos tambien con las credenciales del archivo docker-compose.yml

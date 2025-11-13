@@ -2,6 +2,7 @@ package isi.deso.DAO;
 
 import java.util.List;
 
+import isi.deso.Modelo.HuespedDTO;
 import isi.deso.domain.Huesped;
 import isi.deso.domain.TipoDocumento;
 
@@ -14,6 +15,7 @@ import isi.deso.domain.TipoDocumento;
  */
 public interface HuespedDAO {
     void crearHuesped(Huesped h);
+    void crearHuespedconDTO(HuespedDTO h);
     void modificarHuesped(TipoDocumento tipoOriginal, String numOriginal, Huesped hActualizado);
     void eliminarHuesped(Huesped h);
     Huesped obtenerHuesped(TipoDocumento tipo, String num);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import isi.deso.Modelo.DireccionDTO;
+import isi.deso.Modelo.HuespedDTO;
 import isi.deso.domain.Huesped;
 import isi.deso.domain.PosicionIVA;
 import isi.deso.domain.TipoDocumento;
@@ -48,6 +49,42 @@ public class HuespedDAOImp implements HuespedDAO{
               .append(h.getNumeroDocumento()).append(SEPARADOR)
               .append(h.getCuit() != null ? h.getCuit() : "").append(SEPARADOR)
               .append(h.getPosicionIVA()).append(SEPARADOR)
+              .append(h.getFechaNacimiento()).append(SEPARADOR);
+
+            DireccionDTO d = h.getDireccion();
+            sb.append(d.getCalle()).append(SEPARADOR)
+              .append(d.getNumero()).append(SEPARADOR)
+              .append(d.getDepartamento()).append(SEPARADOR)
+              .append(d.getPiso()).append(SEPARADOR)
+              .append(d.getCodigoPostal()).append(SEPARADOR)
+              .append(d.getLocalidad()).append(SEPARADOR)
+              .append(d.getProvincia()).append(SEPARADOR)
+              .append(d.getPais()).append(SEPARADOR);
+
+            sb.append(h.getTelefono()).append(SEPARADOR)
+              .append(h.getEmail() != null ? h.getEmail() : "").append(SEPARADOR)
+              .append(h.getOcupacion()).append(SEPARADOR)
+              .append(h.getNacionalidad());
+
+            bw.write(sb.toString());
+            bw.newLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void crearHuespedconDTO(HuespedDTO h) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(h.getApellido()).append(SEPARADOR)
+              .append(h.getNombres()).append(SEPARADOR)
+              .append(h.getTipoDocumento()).append(SEPARADOR)
+              .append(h.getNumeroDocumento()).append(SEPARADOR)
+              .append(h.getCuit() != null ? h.getCuit() : "").append(SEPARADOR)
+              .append(h.getPosicion()).append(SEPARADOR)
               .append(h.getFechaNacimiento()).append(SEPARADOR);
 
             DireccionDTO d = h.getDireccion();

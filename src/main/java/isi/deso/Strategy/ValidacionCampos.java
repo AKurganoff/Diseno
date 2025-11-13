@@ -4,7 +4,7 @@
  */
 package isi.deso.Strategy;
 import isi.deso.Modelo.DireccionDTO;
-import isi.deso.domain.Huesped;
+import isi.deso.Modelo.HuespedDTO;
 /**
  * Estrategia de validacion que verifica que los campos obligatorios
  * de un huesped esten completados.
@@ -23,7 +23,7 @@ public class ValidacionCampos implements Validacion{
      * @return {@code true} si todos los campos requeridos son validos, {@code false} en caso contrario
      */
     @Override
-    public boolean validar(Huesped h){
+    public boolean validar(HuespedDTO h){
         if (h.getNombres() == null || h.getNombres().isEmpty()) { System.out.println("El/Los nombres no han sido completado/s.");return false; }
         if (h.getApellido() == null || h.getApellido().isEmpty()) { System.out.println("El apellido no ha sido completado");return false; }
         if (h.getTipoDocumento() == null) { System.out.println("El tipo de documento no ha sido completado.");return false; }

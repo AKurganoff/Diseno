@@ -7,3 +7,4 @@ Martinez;Ricardo;DNI;24555888;20-24555888-3;ResponsableInscripto;1975-09-03;Belg
 Schmidt;Anja;PASAPORTE;DE1234567;;ConsumidorFinal;1992-07-22;Av. de Mayo;1370;NOP;0;C1085;Buenos Aires;CABA;Argentina;4917612345678;anja.schmidt@email.de;Ingeniera;Alemana
 Meyer;Benjamin;DNI;43007865;20430078651;Exento;2002-01-02;Pje Publico;205;NoPosee;0;3000;Santa Fe;Santa FE;Argentina;3425650001;;Streamer;Argentino
 Benavidez;Antonio;LC;20456873;;ResponsableInscripto;2000-12-30;Falucho;2341;NoPosee;1;3000;Santa Fe;Santa Fe;Argentina;3424077322;;Ingeniero;Argentino
+mazzoni;nacho;DNI;44427691;2044427691;ConsumidorFinal;2003-01-03;cordoba;46;A;3;3001;santa fe;sante fe;argentina;3488776632;nacho@mail.com;estudiante;argentino

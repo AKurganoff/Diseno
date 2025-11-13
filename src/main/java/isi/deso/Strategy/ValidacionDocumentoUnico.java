@@ -5,7 +5,7 @@
 package isi.deso.Strategy;
 
 import isi.deso.DAO.HuespedDAO;
-import isi.deso.domain.Huesped;
+import isi.deso.Modelo.HuespedDTO;
 
 /**
  * Estrategia de validacion que verifica que el documento
@@ -36,7 +36,7 @@ public class ValidacionDocumentoUnico implements Validacion{
      * @return {@code true} si el tipo y numero de documento son unicos, {@code false} si ya existe un huesped con el mismo documento
      */
     @Override
-    public boolean validar(Huesped h){
+    public boolean validar(HuespedDTO h){
         return dao.obtenerHuesped(h.getTipoDocumento(),h.getNumeroDocumento())==null;
     }
     @Override
