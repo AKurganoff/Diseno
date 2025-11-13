@@ -7,6 +7,12 @@ PARA EJECUTAR EL CODIGO DEL CASO DE USO 9
 1. abrir una terminal nueva dentro de visual studio code o el IDE que utilices
 2. ejecutar el comando $mvn clean compile
 3. si no da errores de compilacion ejecutar el comando $mvn exec:java
+4. luego acreditarse en el login con alguno de los usuarios y contraseñas que hay en el archivo "usuariosCargados.txt"
+5. una vez acreditado saldra un texto por pantalla donde le dara a elegir que caso de uso quiere realizar, elegir el caso de uso 9
+6. escribir los datos que le pide el caso de uso (en el formato que se lo pide sino volvera a comenzar)
+7. luego de insertar todos los datos elegir la opcion de terminar o seguir cargando.
+8. Una vez finalizado el caso de uso puede verificar sus huespedes cargados en el archivo "huespedesCargados.txt"
+9. para finalizar la ejecucion apretar 0.
 
 PARA ACCEDER A LA BASE DE DATOS
 1. Abrir la terminal de la computadora, sea powershel, cmd o otra.
