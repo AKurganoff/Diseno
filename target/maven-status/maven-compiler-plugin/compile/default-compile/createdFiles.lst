@@ -18,10 +18,10 @@ isi\deso\DAO\DireccionDAOImp.class
 isi\deso\domain\TipoDocumento.class
 isi\deso\Excepcion\MainException.class
 isi\deso\DAO\HuespedDAO.class
-isi\deso\DAO\UsuarioDaoImp.class
 isi\deso\Modelo\DireccionDTO.class
 isi\deso\Presentacion\Main.class
 isi\deso\domain\Huesped.class
+isi\deso\DAO\UsuarioDAOImp.class
 isi\deso\Gestor\GestorHuesped.class
 isi\deso\Strategy\Validacion.class
 isi\deso\domain\Archivo.class

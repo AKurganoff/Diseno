@@ -80,4 +80,9 @@ public class UsuarioDAOImpFile implements UsuarioDAO {
             throw new RuntimeException("Error escribiendo " + ARCHIVO, e);
         }
     }
+
+    @Override
+    public boolean validarUsuarioBD(String nombreUsuario, String contrasena) {  
+        throw new UnsupportedOperationException("No soportado en UsuarioDAOImpFile");
+    }
 }

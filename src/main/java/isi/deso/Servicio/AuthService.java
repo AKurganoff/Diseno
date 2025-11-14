@@ -1,10 +1,10 @@
 package isi.deso.Servicio;
 
+import java.util.Objects;
+
+import isi.deso.DAO.UsuarioDAO;
 import isi.deso.Excepcion.AutenticacionException;
 import isi.deso.domain.Usuario;
-import isi.deso.DAO.UsuarioDAO;
-
-import java.util.Objects;
 
 /**
  * Servicio encargado de la autenticacion de usuarios.
@@ -68,4 +68,9 @@ public class AuthService {
   private static boolean equalsPass(Usuario u, String pass) {
     return u.getContrasenia() != null && u.getContrasenia().equals(pass);
   }
+
+  public boolean validarUsuarioBD(String nombreUsuario, String contrasena) {
+    return usuarioDAO.validarUsuarioBD(nombreUsuario, contrasena);
+  }
+
 }

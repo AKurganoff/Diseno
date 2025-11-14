@@ -30,6 +30,7 @@ public class HuespedDTO {
     private String ocupacion;
     private String nacionalidad;
 
+    public HuespedDTO(){}
     public HuespedDTO(String nombres, String apellido, TipoDocumento tipoDocumento, String numeroDocumento, String cuit,
             PosicionIVA posicion, LocalDate fNac, DireccionDTO dir, String telefono, String email,
             String ocupacion, String nacionalidad) {

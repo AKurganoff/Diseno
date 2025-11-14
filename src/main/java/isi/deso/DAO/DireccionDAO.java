@@ -21,4 +21,8 @@ public interface DireccionDAO {
     void eliminarDireccion(DireccionDTO d);
     DireccionDTO obtenerDireccion(String calle, String numero, String departamento, String piso, String codigoPostal);
     List<DireccionDTO> obtenerTodos();
+    void registrarDireccionBD(DireccionDTO d);
+    List<DireccionDTO> buscarDireccionBDxPais(String pais);
+    List<DireccionDTO> buscarDireccionBDxLocalidad(String localidad);
+    List<DireccionDTO> buscarDireccionBDxCalle(String calle);
 }

@@ -20,4 +20,9 @@ public interface HuespedDAO {
     void eliminarHuesped(Huesped h);
     Huesped obtenerHuesped(TipoDocumento tipo, String num);
     List<Huesped> obtenerTodos();
+    void registrarHuespedBD(HuespedDTO h);
+    List<HuespedDTO> buscarBDxNombre(String pnombre);
+    List<HuespedDTO> buscarBDxApellido(String papellido);
+    HuespedDTO buscarBDxDNI(String pdni);
+
 }

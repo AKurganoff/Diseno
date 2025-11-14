@@ -24,6 +24,7 @@ public class DireccionDTO {
      * @param provincia provincia de la persona
      * @param pais pais de la persona
      */
+    public DireccionDTO(){}
     public DireccionDTO(String calle, String numero, String departamento, String piso, String codigoPostal, String localidad, String provincia, String pais) {
         this.calle = calle;
         this.numero = numero;
@@ -42,6 +43,32 @@ public class DireccionDTO {
     public String getLocalidad() { return localidad; }
     public String getProvincia() { return provincia; }
     public String getPais() { return pais; }
+    
+    public void setCalle(String calle){
+        this.calle = calle;
+    }
+    public void setNumero(String numero){
+        this.numero = numero;
+    }
+    public void setDepartamento(String dep){
+        this.departamento = dep;
+    }
+    public void setPiso(String piso){
+        this.piso = piso;
+    }
+    public void setCodigoPostal(String cp){
+        this.codigoPostal = cp;
+    }
+    public void setLocalidad(String loc){
+        this.localidad = loc;
+    }
+    public void setProvincia(String prov){
+        this.provincia = prov;
+    }
+    public void setPais(String pais){
+        this.pais = pais;
+    }
+
     @Override
     public String toString() {
         return calle + " " + numero + ", " + departamento + " "+ piso + ", " + codigoPostal + ", " + localidad + ", " + provincia + " (" + pais + ")";

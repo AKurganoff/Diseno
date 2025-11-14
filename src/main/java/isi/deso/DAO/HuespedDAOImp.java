@@ -7,12 +7,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import isi.deso.Modelo.DireccionDTO;
 import isi.deso.Modelo.HuespedDTO;
+import isi.deso.domain.ConexionBD;
 import isi.deso.domain.Huesped;
 import isi.deso.domain.PosicionIVA;
 import isi.deso.domain.TipoDocumento;
@@ -32,12 +42,22 @@ public class HuespedDAOImp implements HuespedDAO{
     
     private static final String ARCHIVO = "huespedesCargados.txt";
     private static final String SEPARADOR = ";";
+    private static HuespedDAOImp instancia; 
 
     /**
      * Almacena un huesped en el archivo
      *
      * @param h {@link isi.deso.domain.Huesped} datos del huesped
      */
+    
+
+    public HuespedDAOImp getInstance() {
+        if (instancia == null) {
+            instancia = new HuespedDAOImp();
+        }
+        return instancia;
+    } 
+
     @Override
     public void crearHuesped(Huesped h) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
@@ -281,6 +301,226 @@ public class HuespedDAOImp implements HuespedDAO{
         if (!archivoTemp.renameTo(archivo)) {
             System.out.println("No se pudo renombrar el archivo temporal.");
         }
+    }
+
+    @Override
+    public void registrarHuespedBD(HuespedDTO h){
+        String  dni, nombre, apellido, ocupacion, mail, calle, numero, departamento, piso, codigoPostal;
+        TipoDocumento tipodni;
+        PosicionIVA pos_iva;
+        int edad;
+        LocalDate fecha_nacimiento;
+
+        dni = h.getNumeroDocumento();
+        nombre = h.getNombres();
+        apellido = h.getApellido();
+        fecha_nacimiento = h.getFechaNacimiento();
+        ocupacion = h.getOcupacion();
+        tipodni = h.getTipoDocumento();
+        mail = h.getEmail();
+        pos_iva = h.getPosicion();
+        calle = h.getDireccion().getCalle();
+        numero = h.getDireccion().getNumero();
+        departamento = h.getDireccion().getDepartamento();
+        piso = h.getDireccion().getPiso();
+        codigoPostal = h.getDireccion().getCodigoPostal();
+        
+        //Calculo la edad
+        LocalDate fechaActual = LocalDate.now();
+        Period periodo = Period.between(fecha_nacimiento, fechaActual);
+        edad = periodo.getYears();
+
+        //Parseo LocalDate a Date
+        LocalDateTime f_nac = fecha_nacimiento.atStartOfDay();
+        ZonedDateTime zone_date = f_nac.atZone(ZoneId.systemDefault());
+        Date f_nacDate = Date.from(zone_date.toInstant());
+        
+        long milisegundos = f_nacDate.getTime();
+        java.sql.Date fecha_nacSQL = new java.sql.Date(milisegundos);
+
+
+
+        String sql = "INSERT INTO HUESPED(dni, nombre, apellido, fecha_nacimiento, ocupacion, tipodni, mail, pos_iva, calle, numero, departamento, piso, codigo_postal) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConexionBD.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, dni);
+            pstmt.setString(2, nombre);
+            pstmt.setString(3, apellido);
+            pstmt.setInt(4, edad);
+            pstmt.setDate(5, fecha_nacSQL);
+            pstmt.setString(6, ocupacion);
+            pstmt.setString(7, tipodni.toString());
+            pstmt.setString(8, mail);
+            pstmt.setString(9, pos_iva.toString());
+            pstmt.setString(10, calle);
+            pstmt.setString(11, numero);
+            pstmt.setString(12, departamento);
+            pstmt.setString(13, piso);
+            pstmt.setString(14, codigoPostal);
+            
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public PosicionIVA convertirStringAPos(String pos){
+        PosicionIVA posIVA;
+        switch (pos) {
+            case "Responsable Inscripto":
+                return posIVA = PosicionIVA.ResponsableInscripto;
+                
+            case "Monotributista":
+                return posIVA = PosicionIVA.Monotributista;
+                
+            case "Exento":
+                return posIVA = PosicionIVA.Exento;
+                
+            case "Consumidor Final":
+                return posIVA = PosicionIVA.ConsumidorFinal;
+            
+            default:
+                return posIVA = PosicionIVA.ConsumidorFinal;
+        }
+    }
+
+    public TipoDocumento pasarStringATipoDoc(String tipoDoc){
+        TipoDocumento td;
+        switch (tipoDoc) { 
+            case "DNI":
+                td = TipoDocumento.DNI;
+                break;
+            case "LE":
+                td = TipoDocumento.LE;
+                break;
+            case "LC" :
+                td = TipoDocumento.LC;
+                break;
+            case "Pasaporte":
+                td = TipoDocumento.PASAPORTE;
+                break;
+            default:
+                td = TipoDocumento.OTRO;
+        }
+        return td;
+    }
+
+    @Override
+    public List<HuespedDTO> buscarBDxNombre(String pnombre){
+        List<HuespedDTO> listaxNombre = new ArrayList<>();
+        String sql = "SELECT * FROM HUESPED WHERE nombre = ?";
+        try(Connection conn = ConexionBD.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+                pstmt.setString(1, pnombre);
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while(rs.next()){
+                    HuespedDTO h = new HuespedDTO();
+                    h.setNombre(rs.getString("nombre"));
+                    h.setApellido(rs.getString("apellido"));
+                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                    h.setNumeroDocumento(rs.getString("dni"));
+                    h.setCuit(rs.getString("cuit"));
+                    h.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
+                    h.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                    h.setEmail(rs.getString("mail"));
+                    h.setOcupacion(rs.getString("ocupacion"));
+                    
+                    DireccionDTO d = new DireccionDTO();
+                    d.setCalle(rs.getString("calle"));
+                    d.setNumero(rs.getString("numero"));
+                    d.setDepartamento(rs.getString("departamento"));
+                    d.setPiso(rs.getString("piso"));
+                    d.setCodigoPostal(rs.getString("cod_postal"));
+
+                    h.setDir(d);
+                    h.setNacionalidad(d.getPais());
+
+                    listaxNombre.add(h);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return listaxNombre;
+    }
+
+    @Override
+    public List<HuespedDTO> buscarBDxApellido(String papellido){
+        List<HuespedDTO> listaxApellido = new ArrayList<>();
+        String sql = "SELECT * FROM HUESPED WHERE apellido = ?";
+        try(Connection conn = ConexionBD.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+                pstmt.setString(1, papellido);
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while(rs.next()){
+                    HuespedDTO h = new HuespedDTO();
+                    h.setNombre(rs.getString("nombre"));
+                    h.setApellido(rs.getString("apellido"));
+                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                    h.setNumeroDocumento(rs.getString("dni"));
+                    h.setCuit(rs.getString("cuit"));
+                    h.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
+                    h.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                    h.setEmail(rs.getString("mail"));
+                    h.setOcupacion(rs.getString("ocupacion"));
+                    
+                    DireccionDTO d = new DireccionDTO();
+                    d.setCalle(rs.getString("calle"));
+                    d.setNumero(rs.getString("numero"));
+                    d.setDepartamento(rs.getString("departamento"));
+                    d.setPiso(rs.getString("piso"));
+                    d.setCodigoPostal(rs.getString("cod_postal"));
+
+                    h.setDir(d);
+                    h.setNacionalidad(d.getPais());
+
+                    listaxApellido.add(h);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return listaxApellido;
+    }
+    
+    @Override
+    public HuespedDTO buscarBDxDNI(String pdni){
+        HuespedDTO hxDNI = new HuespedDTO();
+        String sql = "SELECT * FROM HUESPED WHERE dni = ?";
+        try(Connection conn = ConexionBD.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+                pstmt.setString(1, pdni);
+
+                ResultSet rs = pstmt.executeQuery();
+                hxDNI.setNombre(rs.getString("nombre"));
+                hxDNI.setApellido(rs.getString("apellido"));
+                hxDNI.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                hxDNI.setNumeroDocumento(rs.getString("dni"));
+                hxDNI.setCuit(rs.getString("cuit"));
+                hxDNI.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
+                hxDNI.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                hxDNI.setEmail(rs.getString("mail"));
+                hxDNI.setOcupacion(rs.getString("ocupacion"));
+                    
+                DireccionDTO d = new DireccionDTO();
+                d.setCalle(rs.getString("calle"));
+                d.setNumero(rs.getString("numero"));
+                d.setDepartamento(rs.getString("departamento"));
+                d.setPiso(rs.getString("piso"));
+                d.setCodigoPostal(rs.getString("cod_postal"));
+
+                hxDNI.setDir(d);
+                hxDNI.setNacionalidad(d.getPais());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return hxDNI;
     }
 
 }

@@ -31,14 +31,18 @@ public class EstadiaDAOImp implements EstadiaDAO {
     private static final String ARCHIVO_E = "estadiasCargadas.txt";
     private static final String SEPARADOR = ";";
     private final HuespedDAO huespedDAO;
+    private static EstadiaDAOImp instancia = null;
 
     /**
      * Crea una instancia de EstadiaDaoImp y una de HuespedDAOImp
      * 
      * @see isi.deso.DAO.HuespedDAOImp
      */
-    public EstadiaDAOImp() {
-        this.huespedDAO = new HuespedDAOImp();
+    public static EstadiaDAOImp getInstance(HuespedDAO huespedDAO) {
+        if (instancia == null) {
+            instancia = new EstadiaDAOImp(new HuespedDAOImp());
+        }
+        return instancia;
     }
 
     /**
@@ -46,7 +50,7 @@ public class EstadiaDAOImp implements EstadiaDAO {
      * 
      * @see isi.deso.DAO.HuespedDAO
      */
-    public EstadiaDAOImp(HuespedDAO huespedDAO) {
+    public EstadiaDAOImp(HuespedDAOImp huespedDAO) {
         this.huespedDAO = huespedDAO;
     }
     

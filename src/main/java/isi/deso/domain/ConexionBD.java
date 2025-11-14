@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    private static Connection con;
+    private static Connection con = null;
     private static final String driver = "org.postgresql.Driver";
     private static final String user = "postgres";
     private static final String password = "alenachosantiagu";
@@ -14,7 +14,6 @@ public class ConexionBD {
     public ConexionBD() {}
 
     public void connect() {
-        con = null;
         try {
             Class.forName(driver);
             con = (Connection) DriverManager.getConnection(url,user,password);
@@ -25,5 +24,10 @@ public class ConexionBD {
         catch (ClassNotFoundException | SQLException e){
             System.out.println("Error de conexion " + e);
         }
+    }
+
+    public static Connection getConnection() throws SQLException{
+        con = (Connection) DriverManager.getConnection(url, user, password);
+        return con;
     }
 }

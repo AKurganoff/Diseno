@@ -18,4 +18,5 @@ import isi.deso.domain.Usuario;
 public interface UsuarioDAO {
     public List<Usuario> listaCompUser();
     public void guardarUsuario(Usuario usuario);
+    boolean validarUsuarioBD(String nombreUsuario, String contrasena);
 }
