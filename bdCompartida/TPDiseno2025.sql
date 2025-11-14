@@ -699,4 +699,3 @@ COPY public.tipohabitacion (idtipo, nombretipo, cantidaddisponible, precio_x_noc
 --
 
 \unrestrict JW3TnnHtrJX9X4n3SjLBKyfuBnAc4czfnO1xgGxTNQJkRxc8ySa2HYulMujMNiQ
-
