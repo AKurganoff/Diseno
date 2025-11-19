@@ -7,3 +7,4 @@ Belgrano;845;A;10;2000;Rosario;Santa Fe;Argentina
 Av. de Mayo;1370;NOP;0;C1085;Buenos Aires;CABA;ArgentinaPje Publico;205;NoPosee;0;3000;Santa Fe;Santa FE;Argentina;
 Falucho;2341;NoPosee;1;3000;Santa Fe;Santa Fe;Argentina;
 cordoba;46;A;3;3001;santa fe;sante fe;argentina;
+diego;torres;a;3;3001;santa fe;santa fe;argentina;

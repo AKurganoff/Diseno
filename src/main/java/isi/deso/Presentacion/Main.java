@@ -13,9 +13,11 @@ import isi.deso.DAO.HuespedDAO;
 import isi.deso.DAO.HuespedDAOImp;
 import isi.deso.DAO.UsuarioDAO;
 import isi.deso.DAO.UsuarioDAOImp;
+import isi.deso.Excepcion.AutenticacionException;
 import isi.deso.Gestor.GestorHuesped;
 import isi.deso.Modelo.DireccionDTO;
 import isi.deso.Modelo.HuespedDTO;
+import isi.deso.Servicio.AuthService;
 import isi.deso.Servicio.HuespedService;
 import isi.deso.Strategy.Validacion;
 import isi.deso.Strategy.ValidacionCampos;
@@ -50,16 +52,16 @@ public class Main {
      * Punto de entrada principal del sistema.
      */
     public static void main(String[] args) {
-        
+        java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("UTC"));
         try {
 
             // cu01 - login
             
             System.out.println("BIENVENIDO");
             
-            // System.out.println("ingrese sus datos para continuar\n");
+            System.out.println("ingrese sus datos para continuar\n");
 
-            // AuthService auth = new AuthService(usuarioDAO);
+            AuthService auth = new AuthService(usuarioDAO);
 
             // bucle hasta que loguea
 /** 
@@ -80,20 +82,21 @@ public class Main {
                 }
             }
 */
-/** 
+
+ 
             while(true) {
                 System.out.print("ingresar nombre de usuario: ");
                 String nombreUs = scanner.nextLine();
                 System.out.print("ingresar contrasenia: ");
                 String contrasenia = scanner.nextLine();
-                if (auth.validarUsuarioBD(nombreUs, contrasenia)) {
+                try{
+                    auth.validarUsuarioBD(nombreUs, contrasenia);
                     System.out.println("usuario validado\n");
                     break;
-                } else {
-                    System.out.println("error: credenciales invalidas.");
+                } catch (AutenticacionException e) {
+                    System.out.println("error: " + e.getMessage());   
                 }
             }
-*/
             // menú principal
             while (true) {
                 System.out.println();
@@ -112,12 +115,10 @@ public class Main {
                     default -> System.out.println("opcion invalida");
                 }
             }
-
         } catch (Exception e) {
             System.err.println("error: " + e.getMessage());
             System.out.println("fin.");
         }
-        
     }
 
     // cu02 - buscar huesped

@@ -423,11 +423,11 @@ public class HuespedDAOImp implements HuespedDAO{
                     HuespedDTO h = new HuespedDTO();
                     h.setNombre(rs.getString("nombre"));
                     h.setApellido(rs.getString("apellido"));
-                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipodni")));
                     h.setNumeroDocumento(rs.getString("dni"));
                     h.setCuit(rs.getString("cuit"));
                     h.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
-                    h.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                    h.setfNac(rs.getDate("fecha_nacimiento").toLocalDate());
                     h.setEmail(rs.getString("mail"));
                     h.setOcupacion(rs.getString("ocupacion"));
                     
@@ -463,11 +463,11 @@ public class HuespedDAOImp implements HuespedDAO{
                     HuespedDTO h = new HuespedDTO();
                     h.setNombre(rs.getString("nombre"));
                     h.setApellido(rs.getString("apellido"));
-                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipodni")));
                     h.setNumeroDocumento(rs.getString("dni"));
                     h.setCuit(rs.getString("cuit"));
                     h.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
-                    h.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                    h.setfNac(rs.getDate("fecha_nacimiento").toLocalDate());
                     h.setEmail(rs.getString("mail"));
                     h.setOcupacion(rs.getString("ocupacion"));
                     
@@ -500,11 +500,11 @@ public class HuespedDAOImp implements HuespedDAO{
                 ResultSet rs = pstmt.executeQuery();
                 hxDNI.setNombre(rs.getString("nombre"));
                 hxDNI.setApellido(rs.getString("apellido"));
-                hxDNI.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipoDocumento")));
+                hxDNI.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipodni")));
                 hxDNI.setNumeroDocumento(rs.getString("dni"));
                 hxDNI.setCuit(rs.getString("cuit"));
                 hxDNI.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
-                hxDNI.setfNac(rs.getDate("fecha_nacimineto").toLocalDate());
+                hxDNI.setfNac(rs.getDate("fecha_nacimiento").toLocalDate());
                 hxDNI.setEmail(rs.getString("mail"));
                 hxDNI.setOcupacion(rs.getString("ocupacion"));
                     
@@ -521,6 +521,45 @@ public class HuespedDAOImp implements HuespedDAO{
                 e.printStackTrace();
             }
         return hxDNI;
+    }
+
+    @Override
+    public List<HuespedDTO> obtenerTodosBD() {
+       List<HuespedDTO> listaHuespedes = new ArrayList<>();
+        String sql = "SELECT * FROM HUESPED";
+        try(Connection conn = ConexionBD.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                ResultSet rs = pstmt.executeQuery();
+
+                while(rs.next()){
+                    HuespedDTO h = new HuespedDTO();
+                    h.setNombre(rs.getString("nombre"));
+                    h.setApellido(rs.getString("apellido"));
+                    h.setTipoDocumento(pasarStringATipoDoc(rs.getString("tipodni")));
+                    h.setNumeroDocumento(rs.getString("dni"));
+                    h.setCuit(rs.getString("cuit"));
+                    h.setPosicion(convertirStringAPos(rs.getString("pos_iva")));
+                    h.setfNac(rs.getDate("fecha_nacimiento").toLocalDate());
+                    h.setEmail(rs.getString("mail"));
+                    h.setOcupacion(rs.getString("ocupacion"));
+                    
+                    DireccionDTO d = new DireccionDTO();
+                    d.setCalle(rs.getString("calle"));
+                    d.setNumero(rs.getString("numero"));
+                    d.setDepartamento(rs.getString("departamento"));
+                    d.setPiso(rs.getString("piso"));
+                    d.setCodigoPostal(rs.getString("cod_postal"));
+
+                    h.setDir(d);
+                    h.setNacionalidad(d.getPais());
+
+                    listaHuespedes.add(h);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return listaHuespedes;
     }
 
 }

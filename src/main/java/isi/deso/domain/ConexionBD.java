@@ -9,7 +9,7 @@ public class ConexionBD {
     private static final String driver = "org.postgresql.Driver";
     private static final String user = "postgres";
     private static final String password = "alenachosantiagu";
-    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String url = "jdbc:postgresql://localhost:5432/postgres?options=-c%20timezone=UTC";
 
     public ConexionBD() {}
 

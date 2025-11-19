@@ -24,5 +24,6 @@ public interface HuespedDAO {
     List<HuespedDTO> buscarBDxNombre(String pnombre);
     List<HuespedDTO> buscarBDxApellido(String papellido);
     HuespedDTO buscarBDxDNI(String pdni);
+    List<HuespedDTO> obtenerTodosBD();
 
 }
